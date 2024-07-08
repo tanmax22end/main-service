@@ -5,7 +5,7 @@ const helmet = require('helmet');
 
 const cors = require('cors');
 
-const router = require('./api/masterRouter');
+const router = require('./api/router.js');
 
 const server = (container) => {
     const app = express();

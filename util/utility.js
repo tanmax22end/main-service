@@ -30,5 +30,8 @@ class Utility {
             }
         }, null, res);
     }
+}
 
+module.exports = {
+    Utility
 }

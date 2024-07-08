@@ -34,7 +34,6 @@ const connectMongoose = async (retriesLeft) => {
 const connectDatabase = async () => {
     // default is 10 secs, this is the time mongoose waits for mongo server to become available
     mongoose.set('bufferTimeoutMS', 5000);
-    mongoose.set('autoIndex', config.envConf.autoIndex);
 
     mongoose.connection.on('error', (err) => {
         console.error('Error connecting to MongoDB', {
