@@ -4,14 +4,12 @@
 1. [Introduction](#introduction)
 2. [System Architecture](#system-architecture)
 3. [Services](#services)
-   - [Interface Service](#interface-service)
+   - [Handler Service](#interface-service)
    - [Compression Service](#compression-service)
 4. [Database Models](#database-models)
 5. [API Endpoints](#api-endpoints)
 6. [Installation](#installation)
 7. [Usage](#usage)
-8. [Contributing](#contributing)
-9. [License](#license)
 
 ## Introduction
 
@@ -27,7 +25,7 @@ These services work together to process incoming CSV files, manage image compres
 
 ## Services
 
-### Interface Service
+### Handler Service
 
 The Interface Service is responsible for:
 - Receiving CSV files
@@ -42,7 +40,7 @@ The Interface Service is responsible for:
 The Compression Service is responsible for:
 - Receiving images from the Interface Service
 - Compressing images by 50%
-- Calling the Interface Service webhook to update request status
+- Calling the handler Service webhook to update request status
 - Saving processed images
 
 
