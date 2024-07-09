@@ -21,7 +21,7 @@ The system consists of two main services:
 1. Handler Service
 2. Compression Service
 
-These services work together to process incoming CSV files, manage image compression, and update request statuses.
+These services work together to process incoming CSV files, manage image compression, and update request status.
 
 ## Services
 
