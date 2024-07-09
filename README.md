@@ -42,6 +42,35 @@ The Compression Service is responsible for:
 - Calling the handler Service webhook to update request status
 - Saving processed images
 
+Key Functions
+
+`compressImage(reqBody)`
+
+This asynchronous function handles the image compression process:
+
+This function does the following:
+
+1. Iterates through the list of images provided in reqBody.imageList.
+2. For each image:
+   - Generates a unique output path.
+   - Fetches the image buffer from the URL using bufferImageFromUrl.
+   - Compresses the image to 50% quality using the sharp library.
+   - Saves the compressed image to the file system.
+   - Updates the database with the new output image path.
+
+3. After processing all images, it calls a webhook to update the request status to 'finished'.
+
+`bufferImageFromUrl(url)`
+
+This asynchronous function fetches an image from a given URL and returns it as a buffer:
+
+This function does the following:
+
+1. Uses axios to make a GET request to the provided URL, expecting an arraybuffer response.
+2. Creates a Buffer from the response data.
+3. Returns the buffer if successful, or an Error object if the download fails.
+
+
 
 ## API Endpoints
 
