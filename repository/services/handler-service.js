@@ -22,7 +22,7 @@ class HandlerService {
     async webhookCall(reqBody) {
         const response = await this.axios({
             method: 'POST',
-            url: this.config.services.handlerService,
+            url: this.config.services.handlerService.url,
             data: reqBody,
         })
         return response;

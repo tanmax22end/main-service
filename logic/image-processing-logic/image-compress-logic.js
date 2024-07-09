@@ -10,6 +10,7 @@ class ImageCompressLogic {
     }
 
     async compressImage(reqBody){
+
        await Promise.all( _.map(reqBody.imageList, async (element) => {
             const outputPath = `./static/image_${Date.now()}.jpeg`;
             const imageBuffer = await this.bufferImageFromUrl(element.inputImage);
@@ -21,8 +22,7 @@ class ImageCompressLogic {
                     outputImage: outputPath
                 }
             }
-            const response = await this.imageProcessRepo.update(element.productId, updateBody);
-            console.log('response',response);
+            await this.imageProcessRepo.update(element.productId, updateBody);
         }));
         this.handlerService.webhookCall({status: 'finished', requestId: reqBody.requestId})
         return null;

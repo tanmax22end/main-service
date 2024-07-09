@@ -21,7 +21,7 @@ class ImageProcessingService {
     async imageCompress(reqBody){
         const response = await this.axios({
             method: 'POST',
-            url: this.config.services.imageProcessingService,
+            url: this.config.services.imageProcessingService.url,
             data: reqBody,
         })
         return response;

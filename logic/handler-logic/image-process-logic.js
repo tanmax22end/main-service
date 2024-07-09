@@ -29,7 +29,6 @@ class ImageProcessLogic {
             })]
         })
         this.imageProcessingService.imageCompress({imageList: imageList, requestId: requestInfo._id}).catch((err) => {
-            console.log('error', err);
             return {
                 error: err
             }

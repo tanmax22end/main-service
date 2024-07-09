@@ -8,7 +8,6 @@
             status: value.status
         }
         const updatedRes = await this.requestInfoRepo.update(value.requestId, updateObj);
-        console.log('updated res', updatedRes);
         return updatedRes;
     }
  }
