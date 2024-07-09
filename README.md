@@ -6,10 +6,9 @@
 3. [Services](#services)
    - [Handler Service](#interface-service)
    - [Compression Service](#compression-service)
-4. [Database Models](#database-models)
-5. [API Endpoints](#api-endpoints)
-6. [Installation](#installation)
-7. [Usage](#usage)
+4. [API Endpoints](#api-endpoints)
+5. [Installation](#installation)
+6. [Usage](#usage)
 
 ## Introduction
 
