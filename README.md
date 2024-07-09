@@ -18,7 +18,7 @@ This project is an image processing system that handles CSV files containing ima
 ## System Architecture
 
 The system consists of two main services:
-1. Interface Service
+1. Handler Service
 2. Compression Service
 
 These services work together to process incoming CSV files, manage image compression, and update request statuses.
