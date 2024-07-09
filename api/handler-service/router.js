@@ -14,4 +14,8 @@ router.get('/status/:id', (req,res,next) => {
     req.container.resolve('requestStatusApi').handleRequest(req,res).catch(next);
 })
 
+router.post('/webhook/confirmation', (req,res,next) => {
+    req.container.resolve('confirmationWebhook').handleRequest(req,res).catch(next);
+})
+
 module.exports = router;

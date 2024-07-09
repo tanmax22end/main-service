@@ -1,10 +1,10 @@
 const _ = require('lodash');
 
 class ImageProcessLogic {
-    constructor(requestInfoRepo, imageProcessRepo, imageCompressLogic) {
+    constructor(requestInfoRepo, imageProcessRepo, imageProcessingService) {
         this.requestInfoRepo = requestInfoRepo;
         this.imageProcessRepo = imageProcessRepo;
-        this.imageCompressLogic = imageCompressLogic
+        this.imageProcessingService = imageProcessingService
     }
 
     async processImage(results) {
@@ -24,12 +24,11 @@ class ImageProcessLogic {
             imageList = [...imageList, ..._.map(element.inputImage, (image) => {
                 return {
                     inputImage: image,
-                    requestId: element.requestId,
                     productId: element._id
                 }
             })]
         })
-        this.imageCompressLogic.compressImage(imageList).catch((err) => {
+        this.imageProcessingService.imageCompress({imageList: imageList, requestId: requestInfo._id}).catch((err) => {
             console.log('error', err);
             return {
                 error: err

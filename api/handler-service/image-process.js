@@ -36,6 +36,9 @@ class ImageProcess {
             }
 
             let [err, response] = await this.utility.invoker(this.imageProcessLogic.processImage(value));
+            if (err) {
+                return this.utility.sendError('Failed to process image', 400, res);
+            }
             return this.utility.writeResponse(null,{
                 msg: 'Successfully processed the image',
                 data: response

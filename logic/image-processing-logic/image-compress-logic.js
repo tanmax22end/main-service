@@ -4,13 +4,13 @@ const sharp = require('sharp');
 const axios = require("axios")
 
 class ImageCompressLogic {
-    constructor(imageProcessRepo) {
+    constructor(imageProcessRepo, handlerService) {
         this.imageProcessRepo = imageProcessRepo;
+        this.handlerService = handlerService;
     }
 
     async compressImage(reqBody){
-
-        _.forEach(reqBody, async (element) => {
+       await Promise.all( _.map(reqBody.imageList, async (element) => {
             const outputPath = `./static/image_${Date.now()}.jpeg`;
             const imageBuffer = await this.bufferImageFromUrl(element.inputImage);
             const compressedImageBuffer = await sharp(imageBuffer).jpeg({ quality: 50 }).toBuffer();
@@ -22,13 +22,13 @@ class ImageCompressLogic {
                 }
             }
             const response = await this.imageProcessRepo.update(element.productId, updateBody);
-            console.log('compress response', response);
-        });
+            console.log('response',response);
+        }));
+        this.handlerService.webhookCall({status: 'finished', requestId: reqBody.requestId})
         return null;
     }
 
     async bufferImageFromUrl(url){
-        console.log('url', url);
         try{
             const res = await axios({
                 url,
@@ -38,7 +38,6 @@ class ImageCompressLogic {
             return buffer;
         }
         catch(err){
-            console.log("Error in Image fetch", err.message);
             return new Error("Error in downloading Image");
         }
     }

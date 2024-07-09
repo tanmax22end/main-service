@@ -34,11 +34,19 @@ container.register('requestInfoRepo', asClass(require('../repository/data/reques
 
 container.register('imageProcessLogic', asClass(require('../logic/handler-logic/image-process-logic'), getScope()));
 container.register('requestStatusLogic', asClass(require('../logic/handler-logic/request-status-logic'), getScope()));
+container.register('confirmationWebhookLogic', asClass(require('../logic/handler-logic/confirmation-webhook-logic'),getScope()));
 container.register('imageCompressLogic', asClass(require('../logic/image-processing-logic/image-compress-logic'),getScope()));
 
 //-------------------API------------------------
 container.register('imageProcessApi', asClass(require('../api/handler-service/image-process'), getScope()));
 container.register('imageCompressApi', asClass(require('../api/image-processing-service/image-compress-api'), getScope()));
 container.register('requestStatusApi', asClass(require('../api/handler-service/request-status-api'), getScope()));
+container.register('confirmationWebhook', asClass(require('../api/handler-service/confirmation-webhook'), getScope()));
+
+//----------------Services----------------------
+
+container.register('handlerService', asClass(require('../repository/services/handler-service'), getScope()));
+container.register('imageProcessingService', asClass(require('../repository/services/image-processing-service'), getScope()));
+
 
 module.exports = container;

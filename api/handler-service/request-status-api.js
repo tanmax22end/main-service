@@ -7,8 +7,10 @@ class RequestStatusApi {
 
     async handleRequest(req,res) {
         try {
-            console.log('params', req.params);
             let [error, response] = await this.utility.invoker(this.requestStatusLogic.currentStatus(req.params));
+            if (error) {
+                return this.utility.sendError('Failed to fetch request status', 400, res);
+            }
             return this.utility.writeResponse(null,{
                 msg: 'Successfully fetched current status',
                 data: response

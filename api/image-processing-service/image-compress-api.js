@@ -13,6 +13,9 @@ class ImageCompressApi {
                 return this.utility.writeResponse({code: 400, msg: 'Payload Validation failed'}, null, res);
             }
             let [error, response] = await this.utility.invoker(this.imageCompressLogic.compressImage(value));
+            if (error) {
+                return this.utility.sendError('Failed to compress image', 400, res);
+            }
             return this.utility.writeResponse(null,{
                 msg: 'Successfully compressed the image',
                 data: response

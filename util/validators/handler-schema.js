@@ -8,13 +8,15 @@ const ItemsSchema = Joi.object({
 
 const HandlerSchema = Joi.array().items(ItemsSchema);
 
-const CompressImageSchema = Joi.array().items(
-    Joi.object({
-        inputImage: Joi.string().required(),
-        requestId: Joi.string().required(),
-        productId: Joi.string().required()
-    })
-)
+const CompressImageSchema = Joi.object({
+    requestId: Joi.string().required(),
+    imageList: Joi.array().items(
+        Joi.object({
+            inputImage: Joi.string().required(),
+            productId: Joi.string().required()
+        })
+    )
+})
 
 module.exports = {
     HandlerSchema: HandlerSchema,
